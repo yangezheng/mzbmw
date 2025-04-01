@@ -7,6 +7,6 @@
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "env": {
-    "VITE_BACKEND_API_URL": "https://mzbmw-backend.onrender.com"
+    "VITE_BACKEND_API_URL": "https://mzbmw.onrender.com"
   }
 } 
