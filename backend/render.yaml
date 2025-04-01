@@ -1,10 +1,17 @@
 services:
   - type: web
-    name: fastdev-backend
+    name: mzbmw-backend
     env: python
     plan: free
-    buildCommand: poetry install
+    buildCommand: chmod +x render-build.sh && ./render-build.sh
     startCommand: poetry run uvicorn backend.main:app --host 0.0.0.0 --port 10000 --app-dir src
     envVars:
       - key: PORT
         value: 10000
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: /tmp/playwright-browsers
+    buildFilter:
+      paths:
+        - src/**
+        - pyproject.toml
+        - poetry.lock
