@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { api } from "@/lib/api"
 import { getUserHistory, insertUsage } from "./lib/db"
+import { DatasheetDownloader } from "@/components/DatasheetDownloader"
 
 type HistoryItem = {
   input: number
@@ -90,52 +91,23 @@ function App() {
 
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-6 space-y-4 shadow-lg">
-        {!user ? (
-          <>
-            <h2 className="text-xl font-bold text-center">Login or Sign Up</h2>
-            <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-            <Button onClick={signIn}>Login</Button>
-            <Button variant="secondary" onClick={signUp}>Sign Up</Button>
-          </>
-        ) : (
-          <>
-            <h2 className="text-xl font-bold text-center">Welcome, {user.email}</h2>
-            <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter a number" />
-            <Button onClick={calculate} disabled={loading}>
-              {loading ? "Calculating..." : "Submit"}
-            </Button>
+          {!user ? (
+            <>
+              <h2 className="text-xl font-bold text-center">Login or Sign Up</h2>
+              <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+              <Button onClick={signIn}>Login</Button>
+              <Button variant="secondary" onClick={signUp}>Sign Up</Button>
+            </>
+          ) : (
+            <>
+              <DatasheetDownloader />
+              
 
-
-            {result !== null && (
-              <CardContent>
-                <p>Result: <strong>{result}</strong></p>
-              </CardContent>
-            )}
-            {history.length > 0 && (
-              <div className="pt-4 border-t mt-4">
-                <h3 className="text-lg font-semibold mb-2">Your History</h3>
-                <div className="space-y-2">
-                  {history.slice(0,5).map((item, i) => (
-                    <div key={i} className="text-sm text-gray-700 bg-gray-100 p-2 rounded shadow-sm">
-                      <div>
-                        <strong>Input:</strong> {item.input} → <strong>Result:</strong> {item.result}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        {new Date(item.created_at).toLocaleString()}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <Button variant="destructive" onClick={signOut}>Logout</Button>
-
-
-          </>
-        )}
-      </Card>
+              <Button variant="destructive" onClick={signOut}>Logout</Button>
+            </>
+          )}
+        </Card>
     </div>
   )
 }
