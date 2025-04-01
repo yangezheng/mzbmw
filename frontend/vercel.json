@@ -1,0 +1,12 @@
+{
+  "framework": "vite",
+  "buildCommand": "yarn build",
+  "outputDirectory": "dist",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "env": {
+    "VITE_BACKEND_API_URL": "https://mzbmw-backend.onrender.com"
+  }
+} 

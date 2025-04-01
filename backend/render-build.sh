@@ -24,7 +24,22 @@ apt-get install -y --no-install-recommends \
     libgtk-3-0 \
     libgdk-pixbuf-2.0-0 \
     libgbm1 \
-    libxshmfence1
+    libxshmfence1 \
+    ca-certificates \
+    fonts-liberation \
+    libappindicator3-1 \
+    libasound2 \
+    libnspr4 \
+    libnss3 \
+    xdg-utils \
+    wget
 
-# Install Playwright browsers
+# Install Playwright and browsers explicitly with system dependencies
+pip install playwright
+python -m playwright install --with-deps chromium
+python -m playwright install-deps
 python -m playwright install chromium
+
+# Create needed directories for Playwright browser
+mkdir -p /tmp/playwright-browsers
+chmod -R 777 /tmp/playwright-browsers
