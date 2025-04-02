@@ -91,7 +91,7 @@ function App() {
 
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-6 space-y-4 shadow-lg">
-          {!user ? (
+          {/* {!user ? (
             <>
               <h2 className="text-xl font-bold text-center">Login or Sign Up</h2>
               <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
@@ -99,14 +99,14 @@ function App() {
               <Button onClick={signIn}>Login</Button>
               <Button variant="secondary" onClick={signUp}>Sign Up</Button>
             </>
-          ) : (
+          ) : ( */}
             <>
               <DatasheetDownloader />
               
 
-              <Button variant="destructive" onClick={signOut}>Logout</Button>
+              {/* <Button variant="destructive" onClick={signOut}>Logout</Button> */}
             </>
-          )}
+          {/* )} */}
         </Card>
     </div>
   )
